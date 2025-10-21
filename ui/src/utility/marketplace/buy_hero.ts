@@ -6,12 +6,12 @@ export const buyHero = (packageId: string, listHeroId: string, priceInSui: strin
   // TODO: Convert SUI to MIST (1 SUI = 1,000,000,000 MIST)
     // Hints:
     // const priceInMist = ?
-    const priceInMist = tx.pure.u64(BigInt(priceInSui));
+const priceInMist = BigInt(priceInSui) * BigInt(1_000_000_000);
   // TODO: Split coin for exact payment
     // Hints  
     // Use tx.splitCoins(tx.gas, [priceInMist]) to create a payment coin
     // const [paymentCoin] = ?
-    const [paymentCoin] = tx.splitCoins(tx.gas, [priceInMist]);
+const [paymentCoin] = tx.splitCoins(tx.gas, [priceInMist.toString()]);
   // TODO: Add moveCall to buy a hero
   // Function: `${packageId}::marketplace::buy_hero`
   // Arguments: listHeroId (object), paymentCoin (coin)
